@@ -13,7 +13,7 @@
     #preloader {
       position: fixed;
       inset: 0;
-      background: #061a31; /* matches the top of the hero gradient */
+      background: #061a31; 
       z-index: 9999;
       display: grid;
       place-items: center;
@@ -25,8 +25,6 @@
       align-items: center;
       gap: 25px;
     }
-    
-    /* Graphic Animation */
     .graphic-loader {
       position: relative;
       width: 60px;
@@ -53,7 +51,7 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
     @keyframes spin-reverse { 100% { transform: scale(0.7) rotate(-360deg); } }
 
-    /* Letter by Letter Animation */
+    /* Typewriter Animation */
     .typewriter {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1.25rem;
@@ -71,6 +69,55 @@
     @keyframes fadeLetter {
       0% { opacity: 0; transform: translateY(10px); }
       100% { opacity: 1; transform: translateY(0); text-shadow: 0 0 10px rgba(119, 192, 255, 0.4); }
+    }
+
+    /* PLANT WIDGET STYLES */
+    .plant-widget {
+      background: #f2f9f6;
+      border: 1px solid #cce5da;
+      border-radius: 14px;
+      padding: 30px;
+      margin-top: 30px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      box-shadow: 0 10px 30px #29a87c0a;
+      transition: transform 0.3s ease;
+    }
+    .plant-widget:hover {
+      transform: translateY(-3px);
+    }
+    .plant-icon {
+      font-size: 2.2rem;
+      background: #fff;
+      width: 75px;
+      height: 75px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      flex-shrink: 0;
+      border: 1px solid #e0eee8;
+    }
+    .plant-text h3 {
+      margin: 0 0 6px 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--navy);
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+    .plant-text p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    @media(max-width: 600px) {
+      .plant-widget {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 20px;
+      }
     }
   </style>
 </head>
@@ -111,15 +158,35 @@
   <main>
     <section class="hero"><div class="wrap hero-content reveal show"><div class="eyebrow">A first professional chapter · June 12 – August 14, 2026</div><h1>My first workplace. <span>My forever special one.</span></h1><p>At Ashok Leyland Technical Center, I found much more than an internship. I found extraordinary people, new perspectives, and the confidence to begin my professional journey.</p><div class="hero-meta"><b>↓</b><span>Scroll to read the story behind the work.</span></div></div><div class="hero-metric"><strong>64 days</strong><small>that changed how I see work, learning &amp; growth.</small></div></section>
     <div class="marquee"><div>THANK YOU, ASHOK LEYLAND <b>✦</b> GRATEFUL FOR THE JOURNEY <b>✦</b> MY FIRST COMPANY, ALWAYS SPECIAL <b>✦</b> THANK YOU, ASHOK LEYLAND <b>✦</b> GRATEFUL FOR THE JOURNEY <b>✦</b> MY FIRST COMPANY, ALWAYS SPECIAL <b>✦</b></div></div>
-    <section class="intro"><div class="wrap"><div class="heading reveal"><div><div class="eyebrow" style="color:#2874ba">A note from me</div><h2>More than a place I worked. A place that shaped me.</h2></div><p>This is my small thank-you note to the people and the company that made my first professional experience so meaningful.</p></div><article class="letter reveal r"><p>I walked in as an eager student of Artificial Intelligence and Machine Learning. I leave with a much bigger understanding of what it means to be a professional: to listen, adapt, show up on time, stay patient and keep learning.</p><p>Every conversation, every challenge and every bit of guidance made this internship unforgettable. Ashok Leyland will always hold a special place in my heart because it gave me my very first chance to learn what the real world of work feels like.</p>
-        <div class="sign">— Rajith Raaj R</div>
+    
+    <section class="intro">
+      <div class="wrap">
+        <div class="heading reveal">
+          <div>
+            <div class="eyebrow" style="color:#2874ba">A note from me</div>
+            <h2>More than a place I worked. A place that shaped me.</h2>
+          </div>
+          <p>This is my small thank-you note to the people and the company that made my first professional experience so meaningful.</p>
+        </div>
         
-        <!-- PLANT MESSAGE -->
-        <div style="margin-top: 25px; padding-top: 18px; border-top: 1px dashed var(--line); color: var(--muted); font-size: 0.95rem; font-style: italic; line-height: 1.6;">
-          P.S. I chose a plant as a gift because even if I go, the plant would be there beside you and grow....
+        <article class="letter reveal r">
+          <p>I walked in as an eager student of Artificial Intelligence and Machine Learning. I leave with a much bigger understanding of what it means to be a professional: to listen, adapt, show up on time, stay patient and keep learning.</p>
+          <p>Every conversation, every challenge and every bit of guidance made this internship unforgettable. Ashok Leyland will always hold a special place in my heart because it gave me my very first chance to learn what the real world of work feels like.</p>
+          <div class="sign">— Rajith Raaj R</div>
+        </article>
+
+        <!-- NEW PLANT WIDGET -->
+        <div class="plant-widget reveal">
+          <div class="plant-icon">🌿</div>
+          <div class="plant-text">
+            <h3>Why a plant?</h3>
+            <p>I chose a plant as a gift because even if I go, the plant would be there beside you and continue to grow...</p>
+          </div>
         </div>
 
-    </article></div></section>
+      </div>
+    </section>
+
     <section class="journey"><div class="wrap"><div class="heading reveal"><div><div class="eyebrow" style="color:#2874ba">The journey</div><h2>The moments I’ll carry forward.</h2></div><p>A short internship that left a long-lasting impact.</p></div><div class="timeline"><article class="moment reveal"><small>DAY ONE</small><h3>A warm beginning</h3><p>I entered Ashok Leyland with curiosity and excitement, and was welcomed into an environment that made learning feel natural.</p></article><article class="moment reveal r"><small>EVERYDAY LEARNING</small><h3>Watching excellence up close</h3><p>Being around talented, committed people showed me how discipline, collaboration and ownership create exceptional work.</p></article><article class="moment reveal"><small>NEW PERSPECTIVE</small><h3>Understanding professional life</h3><p>I learned that work is not only about completing tasks; it is about reliability, communication, respect and continuously becoming better.</p></article><article class="moment reveal r"><small>THE TAKEAWAY</small><h3>Leaving with gratitude</h3><p>This company has made a lasting mark on me. It was my first company—and I will always remember it with pride.</p></article></div></div></section>
     <section class="values"><div class="wrap"><div class="heading reveal"><div><div class="eyebrow">Personal growth</div><h2>Lessons that went far beyond the office.</h2></div><p>The five values this experience made real for me.</p></div><div class="values-grid"><article class="value reveal"><strong>01</strong><h3>Value of money</h3><p>Understanding effort, responsibility and the meaning behind every earned opportunity.</p></article><article class="value reveal"><strong>02</strong><h3>Value of education</h3><p>Seeing how learning becomes powerful when applied to real-world challenges.</p></article><article class="value reveal"><strong>03</strong><h3>Adaptability</h3><p>Learning to stay open, adjust quickly and grow in new environments.</p></article><article class="value reveal"><strong>04</strong><h3>Value of time</h3><p>Respecting deadlines, priorities and the time others invest in you.</p></article><article class="value reveal"><strong>05</strong><h3>Patience</h3><p>Trusting the process, learning from every step and doing things with care.</p></article></div></div></section>
     <section class="people"><div class="wrap"><div class="heading reveal"><div><div class="eyebrow" style="color:#2874ba">To my colleagues</div><h2>Thank you for making a newcomer feel part of the team.</h2></div><p>The most memorable part of this internship was the people behind the work.</p></div><div class="tribute reveal r"><div><h3>Thank you for your guidance, generosity and belief in me.</h3><div class="badges"><span>Mentorship</span><span>Collaboration</span><span>Kindness</span><span>High standards</span></div></div><p>To everyone I met at Ashok Leyland: your talent and passion inspired me. I am grateful for the patience you showed, the knowledge you shared and the culture of excellence I got to experience. I hope our paths cross again.</p></div></div></section>
@@ -133,12 +200,12 @@
     // Preloader Script (Waits for load + a minimum time to ensure animation is seen)
     window.addEventListener('load', () => {
       const preloader = document.getElementById('preloader');
-      // Adding a 2-second timeout so the letter-by-letter animation has time to finish
+      // Adding a 2.5-second timeout so the letter-by-letter animation has time to finish
       setTimeout(() => {
         preloader.style.opacity = '0';
         preloader.style.visibility = 'hidden';
         setTimeout(() => preloader.remove(), 800);
-      }, 2000); 
+      }, 2500); 
     });
   </script>
 </body>

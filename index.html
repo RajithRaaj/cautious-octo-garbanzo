@@ -13,35 +13,97 @@
     #preloader {
       position: fixed;
       inset: 0;
-      background: var(--navy);
+      background: #061a31; /* matches the top of the hero gradient */
       z-index: 9999;
       display: grid;
       place-items: center;
-      color: #fff;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid rgba(255,255,255,0.1);
-      border-left-color: var(--gold);
+    .preloader-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+    
+    /* Graphic Animation */
+    .graphic-loader {
+      position: relative;
+      width: 60px;
+      height: 60px;
+    }
+    .graphic-loader:before, .graphic-loader:after {
+      content: '';
+      position: absolute;
+      inset: 0;
       border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 15px;
+      border: 3px solid transparent;
+    }
+    .graphic-loader:before {
+      border-top-color: var(--gold);
+      border-bottom-color: var(--gold);
+      animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    }
+    .graphic-loader:after {
+      border-left-color: #77c0ff;
+      border-right-color: #77c0ff;
+      animation: spin-reverse 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+      transform: scale(0.7);
     }
     @keyframes spin { 100% { transform: rotate(360deg); } }
+    @keyframes spin-reverse { 100% { transform: scale(0.7) rotate(-360deg); } }
+
+    /* Letter by Letter Animation */
+    .typewriter {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #d7e9fb;
+      display: flex;
+    }
+    .typewriter span {
+      opacity: 0;
+      display: inline-block;
+      animation: fadeLetter 0.4s forwards;
+      animation-delay: calc(var(--i) * 0.08s);
+    }
+    @keyframes fadeLetter {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); text-shadow: 0 0 10px rgba(119, 192, 255, 0.4); }
+    }
   </style>
 </head>
 <body>
   
   <!-- PRELOADER HTML -->
   <div id="preloader">
-    <div>
-      <div class="spinner"></div>
-      Loading Chapter...
+    <div class="preloader-content">
+      <div class="graphic-loader"></div>
+      <div class="typewriter">
+        <span style="--i:1">M</span>
+        <span style="--i:2">y</span>
+        <span style="--i:3">&nbsp;</span>
+        <span style="--i:4">I</span>
+        <span style="--i:5">n</span>
+        <span style="--i:6">t</span>
+        <span style="--i:7">e</span>
+        <span style="--i:8">r</span>
+        <span style="--i:9">n</span>
+        <span style="--i:10">s</span>
+        <span style="--i:11">h</span>
+        <span style="--i:12">i</span>
+        <span style="--i:13">p</span>
+        <span style="--i:14">&nbsp;</span>
+        <span style="--i:15">J</span>
+        <span style="--i:16">o</span>
+        <span style="--i:17">u</span>
+        <span style="--i:18">r</span>
+        <span style="--i:19">n</span>
+        <span style="--i:20">e</span>
+        <span style="--i:21">y</span>
+        <span style="--i:22">.</span>
+      </div>
     </div>
   </div>
 
@@ -52,9 +114,9 @@
     <section class="intro"><div class="wrap"><div class="heading reveal"><div><div class="eyebrow" style="color:#2874ba">A note from me</div><h2>More than a place I worked. A place that shaped me.</h2></div><p>This is my small thank-you note to the people and the company that made my first professional experience so meaningful.</p></div><article class="letter reveal r"><p>I walked in as an eager student of Artificial Intelligence and Machine Learning. I leave with a much bigger understanding of what it means to be a professional: to listen, adapt, show up on time, stay patient and keep learning.</p><p>Every conversation, every challenge and every bit of guidance made this internship unforgettable. Ashok Leyland will always hold a special place in my heart because it gave me my very first chance to learn what the real world of work feels like.</p>
         <div class="sign">— Rajith Raaj R</div>
         
-        <!-- NEW PLANT MESSAGE ADDED HERE -->
+        <!-- PLANT MESSAGE -->
         <div style="margin-top: 25px; padding-top: 18px; border-top: 1px dashed var(--line); color: var(--muted); font-size: 0.95rem; font-style: italic; line-height: 1.6;">
-          P.S. I chose a plant as a gift because even if I go, the plant will be there beside you and grow...
+          P.S. I chose a plant as a gift because even if I go, the plant would be there beside you and grow....
         </div>
 
     </article></div></section>
@@ -68,12 +130,15 @@
     // Reveal Animations
     const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}}),{threshold:.13});document.querySelectorAll('.reveal:not(.show)').forEach(e=>observer.observe(e));
     
-    // PRELOADER SCRIPT ADDED HERE
+    // Preloader Script (Waits for load + a minimum time to ensure animation is seen)
     window.addEventListener('load', () => {
       const preloader = document.getElementById('preloader');
-      preloader.style.opacity = '0';
-      preloader.style.visibility = 'hidden';
-      setTimeout(() => preloader.remove(), 600);
+      // Adding a 2-second timeout so the letter-by-letter animation has time to finish
+      setTimeout(() => {
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+        setTimeout(() => preloader.remove(), 800);
+      }, 2000); 
     });
   </script>
 </body>
